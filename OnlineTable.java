@@ -6,15 +6,10 @@ import javax.swing.JLabel;
 public class OnlineTable
 {
 	JFrame frame;
+	private String online="";
 	public OnlineTable()
 	{
-		String oT = "";
-		 for(int i=0;i<Online.online.size();i++)
-		 {
-			oT +=Online.online.get(i) ;
-			oT +="\n";
-		 }
-		 JLabel onlineTable = new JLabel(oT);
+		 JLabel onlineTable = new JLabel(online);
 		 
 		frame = new JFrame("Players Online");
 		frame.setSize(250, 150);
@@ -25,5 +20,9 @@ public class OnlineTable
 	public void setVisible(boolean b)
 	{
 		frame.setVisible(b);
+	}
+	public void setTable(String x)
+	{
+		online=x;
 	}
 }

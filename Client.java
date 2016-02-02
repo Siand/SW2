@@ -64,7 +64,7 @@ class Client {
 		e1.printStackTrace();
 	}
     // Create two client threads:
-    ClientSender sender = new ClientSender(nickname,toServer);
+    ClientSender sender = new ClientSender(nickname,toServer,fromServer);
     ClientReceiver receiver = new ClientReceiver(fromServer);
 
     

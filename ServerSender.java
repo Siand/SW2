@@ -8,6 +8,7 @@ public class ServerSender extends Thread {
   private PrintStream client;
   private String nickname;
   private ClientTable table;
+  private Online online;
 
   public ServerSender(Turns t, PrintStream c,String nickname,ClientTable clientTable) {
     turns = t;   

@@ -43,6 +43,7 @@ public class Server {
 
     // Good. We succeeded. But we must try again for the same reason:
     try { 
+    	Online o= new Online();
       // We loop for ever, as servers usually do:
 
       while (true) {
@@ -59,8 +60,8 @@ public class Server {
         String x = fromClient.readLine();
         String clientName;
         int howMany=0;
-        for(int i=0;i<Online.online.size();i++)
-        	if(Online.online.get(i).contains(x))
+        for(int i=0;i<o.online.size();i++)
+        	if(o.online.get(i).contains(x))
         		howMany++;
         String hM = ""+howMany;
         if(howMany>0)
@@ -74,13 +75,13 @@ public class Server {
         System.out.println(clientName + " connected");
 
         // We add the client to the tables:
-        Online.online.add(clientName);
+        o.online.add(clientName);
         scores.add(clientName);
         clientTable.add(clientName);
 
         // We create and start a new thread to read/write from/to the client:
         
-        (new ServerReceiver(clientName, fromClient, toClient, scores,clientTable)).start();
+        (new ServerReceiver(clientName, fromClient, toClient, scores,clientTable,o)).start();
 
         // We create and start a new thread to write to the client:
         (new ServerSender(turns, toClient, clientName,clientTable)).start();

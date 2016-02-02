@@ -18,20 +18,23 @@ public class ClientReceiver extends Thread {
     try {
       while (true) {	
         String s = server.readLine();
-        boolean flag=false;
-		for(int i=0;i<Online.online.size();i++)
-        	if(Online.online.get(i).equals(s))
-        		flag=true;
-		System.out.println(Online.online.size());
-        if(flag)
+        if(s.equals("ONLINE LIST"))
+        	Thread.sleep(2000);
+        else
         {
-        	Proposal p = new Proposal(s);
+	        if(s!="Player not found" && s!="ONLINE LIST")
+	        {
+	        	Proposal p = new Proposal(s);
+	        }
         }
       }
     }
     catch (IOException e) {
       System.out.println("Server seems to have died " + e.getMessage());
       System.exit(1); // Give up.
-    }
+    } catch (InterruptedException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
   }
 }

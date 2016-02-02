@@ -9,10 +9,12 @@ public class ClientSender extends Thread {
 
   private String nickname;
   private PrintStream server;
+  private BufferedReader fromServer;
 
-  ClientSender(String nickname, PrintStream server) {
+  ClientSender(String nickname, PrintStream server,BufferedReader from) {
     this.nickname = nickname;
     this.server = server;
+    this.fromServer=from;
   }
 
   public void run() {
@@ -21,7 +23,7 @@ public class ClientSender extends Thread {
 
     try {
 
-      Menu menu = new Menu(server,nickname); 
+      Menu menu = new Menu(server,nickname,fromServer); 
       // Then loop forever sending messages to recipients via the server:
       while (true) {
         String command = user.readLine();
